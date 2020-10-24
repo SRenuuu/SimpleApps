@@ -5,9 +5,6 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.input.KeyEvent;
-
-import java.awt.*;
 
 public class Controller {
     @FXML public javafx.scene.control.Label lblOutput;
@@ -25,8 +22,6 @@ public class Controller {
         cmbBxOutputType.getItems().removeAll(cmbBxInputType.getItems());
         cmbBxOutputType.getItems().addAll("Binary","Decimal","Octal","Hexa-decimal");
         cmbBxOutputType.getSelectionModel().select(1);
-
-
     }
 
     @FXML
@@ -60,7 +55,6 @@ public class Controller {
         }
         txtOutput.setText(String.valueOf(result));
 
-
     }
     @FXML
     public void cmbBxInputTypeOnAction(ActionEvent actionEvent) {
@@ -72,8 +66,4 @@ public class Controller {
         txtOutput.setPromptText(cmbBxOutputType.getSelectionModel().getSelectedItem().toString());
     }
 
-//
-//    public void txtInputKeyReleased(KeyEvent keyEvent) {
-//        covertBin2Dec();
-//    }
 }
