@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="number_converter.Controller">
+   <children>
+      <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="573.0" style="-fx-background-color: rgba(255,255,255,0.7);" text="Number Systems Converter" textAlignment="CENTER">
+         <font>
+            <Font name="Microsoft YaHei UI" size="18.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="14.0" layoutY="76.0" prefHeight="310.0" prefWidth="573.0" style="-fx-background-color: rgba(255,255,255,0.7);">
+         <children>
+            <JFXTextField fx:id="txtInput" labelFloat="true" layoutX="117.0" layoutY="57.0" promptText="Binary">
+               <font>
+                  <Font name="Microsoft YaHei UI" size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXComboBox fx:id="cmbBxInputType" disable="true" layoutX="328.0" layoutY="54.0" onAction="#cmbBxInputTypeOnAction" prefHeight="34.0" prefWidth="130.0" style="-fx-font-size: 16;" />
+            <JFXButton fx:id="btnConvert" layoutX="239.0" layoutY="138.0" onAction="#btnConvertOnAction" ripplerFill="BLACK" style="-fx-border-color: #4059a9; -fx-border-width: 2px;" text="Convert" textFill="#4059a9">
+               <font>
+                  <Font name="Microsoft YaHei UI" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXTextField fx:id="txtOutput" editable="false" labelFloat="true" layoutX="117.0" layoutY="214.0" promptText="Decimal">
+               <font>
+                  <Font name="Microsoft YaHei UI" size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXComboBox fx:id="cmbBxOutputType" disable="true" layoutX="328.0" layoutY="211.0" onAction="#cmbBxOutputTypeOnAction" prefHeight="34.0" prefWidth="130.0" style="-fx-font-size: 16;" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
