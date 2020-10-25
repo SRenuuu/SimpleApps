@@ -28,27 +28,65 @@ public class Controller {
     public void btnConvertOnAction(ActionEvent actionEvent) {
         String inputType=cmbBxInputType.getSelectionModel().getSelectedItem().toString();
         String outputType=cmbBxOutputType.getSelectionModel().getSelectedItem().toString();
-        if(inputType=="Binary") {
-            if (outputType == "Decimal") {
-                if (txtInput.getText().matches("[0-1]+")) convertBin2Dec();
-                else {
-                    txtOutput.setText("");
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setContentText("Binary value invalid. Please try again.");
-                    alert.show();
-                }
-            }
-        }else if(inputType=="Decimal"){
-            if(outputType == "Binary"){
-                if (txtInput.getText().matches("[0-9]+")) convertDec2Bin();
-            }else {
+        if(inputType == "Binary"  && (txtInput.getText().matches("[0-1]+"))) {
+            if (outputType == "Decimal") convertBin2Dec();
+            if (outputType == "Octal") convertBin2Oct();
+            if (outputType == "Hexa-decimal") convertBin2Hex();
+            
+        }else if (inputType == "Decimal"  && (txtInput.getText().matches("[0-9]+"))) {
+            if (outputType == "Binary") convertDec2Bin();
+            if (outputType == "Octal") convertDec2Oct();
+            if (outputType == "Hexa-decimal") convertDec2Hex();
+
+        }else if (inputType == "Octal"  && (txtInput.getText().matches("[0-7]+"))) {
+            if (outputType == "Binary") convertOct2Bin();
+            if (outputType == "Decimal") convertOct2Dec();
+            if (outputType == "Hexa-decimal") convertOct2Hex();
+                
+                
+        }else if (inputType == "Hexa-decimal"  && (txtInput.getText().matches("[0-7,A-F]+"))) {
+            if (outputType == "Binary") convertHex2Bin();
+            if (outputType == "Decimal") convertHex2Dec();
+            if (outputType == "Octal") convertHex2Oct();
+        
+        }else {
                 txtOutput.setText("");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Decimal value invalid. Please try again.");
+                alert.setContentText("Input value invalid. Please try again.");
                 alert.show();
-            }
         }
     }
+
+    private void convertDec2Hex() {
+    }
+
+    private void convertDec2Oct() {
+    }
+
+    private void convertHex2Oct() {
+    }
+
+    private void convertHex2Dec() {
+    }
+
+    private void convertHex2Bin() {
+    }
+
+    private void convertOct2Hex() {
+    }
+
+    private void convertOct2Dec() {
+    }
+
+    private void convertOct2Bin() {
+    }
+
+    private void convertBin2Hex() {
+    }
+
+    private void convertBin2Oct() {
+    }
+
 
     private void convertDec2Bin() {
         int input=Integer.parseInt(txtInput.getText());
@@ -69,18 +107,15 @@ public class Controller {
             }
         }
         txtOutput.setText(String.valueOf(result));
-
     }
     @FXML
     public void cmbBxInputTypeOnAction(ActionEvent actionEvent) {
         txtInput.setPromptText(cmbBxInputType.getSelectionModel().getSelectedItem().toString());
         txtOutput.clear();
-
     }
     @FXML
     public void cmbBxOutputTypeOnAction(ActionEvent actionEvent) {
         txtOutput.setPromptText(cmbBxOutputType.getSelectionModel().getSelectedItem().toString());
         txtOutput.clear();
     }
-
 }
