@@ -38,11 +38,26 @@ public class Controller {
                     alert.show();
                 }
             }
+        }else if(inputType=="Decimal"){
+            if(outputType == "Binary"){
+                if (txtInput.getText().matches("[0-9]+")) convertDec2Bin();
+            }else {
+                txtOutput.setText("");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Decimal value invalid. Please try again.");
+                alert.show();
+            }
         }
     }
 
     private void convertDec2Bin() {
-        System.out.println("Dec 2 Bin");
+        int input=Integer.parseInt(txtInput.getText());
+        String result="";
+        while(input>0){
+            result+=input%2;
+            input/=2;
+        }
+        txtOutput.setText(new StringBuilder(result).reverse().toString());
     }
 
     private void convertBin2Dec() {
@@ -59,11 +74,13 @@ public class Controller {
     @FXML
     public void cmbBxInputTypeOnAction(ActionEvent actionEvent) {
         txtInput.setPromptText(cmbBxInputType.getSelectionModel().getSelectedItem().toString());
+        txtOutput.clear();
 
     }
     @FXML
     public void cmbBxOutputTypeOnAction(ActionEvent actionEvent) {
         txtOutput.setPromptText(cmbBxOutputType.getSelectionModel().getSelectedItem().toString());
+        txtOutput.clear();
     }
 
 }
