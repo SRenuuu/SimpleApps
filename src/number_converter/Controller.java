@@ -28,24 +28,24 @@ public class Controller {
     public void btnConvertOnAction(ActionEvent actionEvent) {
         String inputType=cmbBxInputType.getSelectionModel().getSelectedItem().toString();
         String outputType=cmbBxOutputType.getSelectionModel().getSelectedItem().toString();
-        check: if(inputType=="Binary"){
-            if(outputType=="Decimal"){
-                for(char digit: txtInput.getText().toCharArray()){
-                    if (digit!='0' && digit!='1'){
-                        txtOutput.setText("");
-                        Alert alert=new Alert(Alert.AlertType.ERROR);
-                        alert.setContentText("Binary value invalid. Please try again.");
-                        alert.show();
-                        break check;
-                    }
+        if(inputType=="Binary") {
+            if (outputType == "Decimal") {
+                if (txtInput.getText().matches("[0-1]+")) convertBin2Dec();
+                else {
+                    txtOutput.setText("");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Binary value invalid. Please try again.");
+                    alert.show();
                 }
-                covertBin2Dec();
             }
         }
-
     }
 
-    private void covertBin2Dec() {
+    private void convertDec2Bin() {
+        System.out.println("Dec 2 Bin");
+    }
+
+    private void convertBin2Dec() {
         int result=0;
         String inputText=txtInput.getText();
         for(int i=0;i<inputText.length();i++){
