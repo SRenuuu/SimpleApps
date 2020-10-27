@@ -58,9 +58,11 @@ public class Controller {
     }
 
     private void convertDec2Hex() {
+        System.out.println("Dec 2 Hex");
     }
 
     private void convertDec2Oct() {
+        System.out.println("Dec 2 Oct");
     }
 
     private void convertHex2Oct() {

@@ -6,7 +6,7 @@ JFoenix library used for Material UI
 <hr>
 <ol>
     <li>
-        Number Systems Converter (Only Binary to Decimal supported currently.)
+        Number Systems Converter (Only Bin2Dec & Dec2Bin supported currently.)
     </li>
 </ol>
     
