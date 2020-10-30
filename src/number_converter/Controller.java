@@ -6,12 +6,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 
+
 public class Controller {
     @FXML public javafx.scene.control.Label lblOutput;
     @FXML public JFXTextField txtInput;
     @FXML public JFXTextField txtOutput;
     @FXML public JFXComboBox cmbBxInputType;
     @FXML public JFXComboBox cmbBxOutputType;
+
+    String outType="Binary";
 
     @FXML
     public void initialize(){
@@ -21,7 +24,8 @@ public class Controller {
 
         cmbBxOutputType.getItems().removeAll(cmbBxInputType.getItems());
         cmbBxOutputType.getItems().addAll("Binary","Decimal","Octal","Hexa-decimal");
-        cmbBxOutputType.getSelectionModel().select(1);
+        cmbBxOutputType.getItems().remove(outType);
+        //cmbBxOutputType.getSelectionModel().select(0);
     }
 
     @FXML
@@ -112,8 +116,14 @@ public class Controller {
     }
     @FXML
     public void cmbBxInputTypeOnAction(ActionEvent actionEvent) {
-        txtInput.setPromptText(cmbBxInputType.getSelectionModel().getSelectedItem().toString());
-        txtOutput.clear();
+        if(cmbBxInputType.getSelectionModel().getSelectedItem().toString()!=outType) {
+            cmbBxOutputType.getItems().add(outType);
+            outType = cmbBxInputType.getSelectionModel().getSelectedItem().toString();
+            txtInput.setPromptText(cmbBxInputType.getSelectionModel().getSelectedItem().toString());
+            txtOutput.clear();
+            cmbBxOutputType.getItems().remove(outType);
+        }
+
     }
     @FXML
     public void cmbBxOutputTypeOnAction(ActionEvent actionEvent) {
