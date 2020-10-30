@@ -62,14 +62,60 @@ public class Controller {
                 alert.show();
         }
     }
+    private void convertDec2Bin() {
+        int input=Integer.parseInt(txtInput.getText());
+        String result="";
+        while(input>0){
+            result+=input%2;
+            input/=2;
+        }
+        txtOutput.setText(new StringBuilder(result).reverse().toString());
+    }
 
     private void convertDec2Hex() {
-        System.out.println("Dec 2 Hex");
+        int input=Integer.parseInt(txtInput.getText());
+        String result="";
+        while(input>0){
+            int temp=input%16;
+            switch (temp){
+                case 10:
+                    result+='A';
+                    break;
+                case 11:
+                    result+='B';
+                    break;
+                case 12:
+                    result+='C';
+                    break;
+                case 13:
+                    result+='D';
+                    break;
+                case 14:
+                    result+='E';
+                    break;
+                case 15:
+                    result+='F';
+                    break;
+                default:
+                    result+=temp;
+                    break;
+            }
+            input/=16;
+        }
+        txtOutput.setText(new StringBuilder(result).reverse().toString());
     }
 
     private void convertDec2Oct() {
-        System.out.println("Dec 2 Oct");
+        int input=Integer.parseInt(txtInput.getText());
+        String result="";
+        while(input>0){
+            result+=input%8;
+            input/=8;
+        }
+        txtOutput.setText(new StringBuilder(result).reverse().toString());
     }
+
+    //=================================
 
     private void convertHex2Oct() {
     }
@@ -89,19 +135,64 @@ public class Controller {
     private void convertOct2Bin() {
     }
 
+    //=================================
+
     private void convertBin2Hex() {
+        int temp=0;
+        String inputText=txtInput.getText();
+        for(int i=0;i<inputText.length();i++){
+            if(inputText.charAt(i)=='1'){
+                temp+=(Math.pow(2,inputText.length()-1-i));
+            }
+        }
+
+        int input=temp;
+        String result="";
+        while(input>0){
+            int temp2=input%16;
+            switch (temp2){
+                case 10:
+                    result+='A';
+                    break;
+                case 11:
+                    result+='B';
+                    break;
+                case 12:
+                    result+='C';
+                    break;
+                case 13:
+                    result+='D';
+                    break;
+                case 14:
+                    result+='E';
+                    break;
+                case 15:
+                    result+='F';
+                    break;
+                default:
+                    result+=temp2;
+                    break;
+            }
+            input/=16;
+        }
+        txtOutput.setText(new StringBuilder(result).reverse().toString());
+
     }
 
     private void convertBin2Oct() {
-    }
+        int temp=0;
+        String inputText=txtInput.getText();
+        for(int i=0;i<inputText.length();i++){
+            if(inputText.charAt(i)=='1'){
+                temp+=(Math.pow(2,inputText.length()-1-i));
+            }
+        }
 
-
-    private void convertDec2Bin() {
-        int input=Integer.parseInt(txtInput.getText());
+        int input=temp;
         String result="";
         while(input>0){
-            result+=input%2;
-            input/=2;
+            result+=input%8;
+            input/=8;
         }
         txtOutput.setText(new StringBuilder(result).reverse().toString());
     }
@@ -116,6 +207,7 @@ public class Controller {
         }
         txtOutput.setText(String.valueOf(result));
     }
+
     @FXML
     public void cmbBxInputTypeOnAction(ActionEvent actionEvent) {
         String type=cmbBxInputType.getSelectionModel().getSelectedItem().toString();
