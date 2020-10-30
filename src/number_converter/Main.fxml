@@ -31,7 +31,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXTextField fx:id="txtOutput" editable="false" labelFloat="true" layoutX="117.0" layoutY="214.0" promptText="">
+            <JFXTextField fx:id="txtOutput" editable="false" labelFloat="true" layoutX="117.0" layoutY="214.0" promptText="Decimal">
                <font>
                   <Font name="Microsoft YaHei UI" size="16.0" />
                </font>

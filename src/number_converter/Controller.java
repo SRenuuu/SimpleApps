@@ -27,7 +27,7 @@ public class Controller {
         cmbBxOutputType.getItems().removeAll(cmbBxInputType.getItems());
         cmbBxOutputType.getItems().addAll("Binary","Decimal","Octal","Hexa-decimal");
         cmbBxOutputType.getItems().remove(outType);
-        //cmbBxOutputType.getSelectionModel().select(0);
+        cmbBxOutputType.getSelectionModel().select(0);
     }
 
     @FXML
@@ -56,10 +56,10 @@ public class Controller {
             if (outputType == "Octal") convertHex2Oct();
 
         }else {
-            txtOutput.setText("");
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Input value invalid. Please try again.");
-            alert.show();
+                txtOutput.setText("");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Input value invalid. Please try again.");
+                alert.show();
         }
     }
 
@@ -120,7 +120,9 @@ public class Controller {
     public void cmbBxInputTypeOnAction(ActionEvent actionEvent) {
         String type=cmbBxInputType.getSelectionModel().getSelectedItem().toString();
         if(type!=outType) {
-            removeFrom(cmbBxOutputType,cmbBxInputType,type);
+            cmbBxOutputType.getItems().add(outType);
+            outType = cmbBxInputType.getSelectionModel().getSelectedItem().toString();
+            cmbBxOutputType.getItems().remove(outType);
 
             txtInput.setPromptText(cmbBxInputType.getSelectionModel().getSelectedItem().toString());
             txtOutput.clear();
@@ -128,19 +130,14 @@ public class Controller {
     }
     @FXML
     public void cmbBxOutputTypeOnAction(ActionEvent actionEvent) {
-
         String type=cmbBxOutputType.getSelectionModel().getSelectedItem().toString();
         if(type!=inType) {
-            removeFrom(cmbBxInputType,cmbBxOutputType,type);
+            cmbBxInputType.getItems().add(inType);
+            inType = cmbBxOutputType.getSelectionModel().getSelectedItem().toString();
+            cmbBxInputType.getItems().remove(inType);
 
             txtOutput.setPromptText(cmbBxOutputType.getSelectionModel().getSelectedItem().toString());
             txtOutput.clear();
         }
-    }
-
-    private void removeFrom(JFXComboBox cmbBx1, JFXComboBox cmbBx2, String inOutType) {
-        cmbBx1.getItems().add(inOutType);
-        inOutType = cmbBx2.getSelectionModel().getSelectedItem().toString();
-        cmbBx1.getItems().remove(inOutType);
     }
 }
