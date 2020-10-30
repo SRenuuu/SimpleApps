@@ -15,12 +15,14 @@ public class Controller {
     @FXML public JFXComboBox cmbBxOutputType;
 
     String outType="Binary";
+    String inType="Decimal";
 
     @FXML
     public void initialize(){
         cmbBxInputType.getItems().removeAll(cmbBxInputType.getItems());
         cmbBxInputType.getItems().addAll("Binary","Decimal","Octal","Hexa-decimal");
         cmbBxInputType.getSelectionModel().select(0);
+        cmbBxInputType.getItems().remove(inType);
 
         cmbBxOutputType.getItems().removeAll(cmbBxInputType.getItems());
         cmbBxOutputType.getItems().addAll("Binary","Decimal","Octal","Hexa-decimal");
@@ -36,7 +38,7 @@ public class Controller {
             if (outputType == "Decimal") convertBin2Dec();
             if (outputType == "Octal") convertBin2Oct();
             if (outputType == "Hexa-decimal") convertBin2Hex();
-            
+
         }else if (inputType == "Decimal"  && (txtInput.getText().matches("[0-9]+"))) {
             if (outputType == "Binary") convertDec2Bin();
             if (outputType == "Octal") convertDec2Oct();
@@ -46,18 +48,18 @@ public class Controller {
             if (outputType == "Binary") convertOct2Bin();
             if (outputType == "Decimal") convertOct2Dec();
             if (outputType == "Hexa-decimal") convertOct2Hex();
-                
-                
+
+
         }else if (inputType == "Hexa-decimal"  && (txtInput.getText().matches("[0-7,A-F]+"))) {
             if (outputType == "Binary") convertHex2Bin();
             if (outputType == "Decimal") convertHex2Dec();
             if (outputType == "Octal") convertHex2Oct();
-        
+
         }else {
-                txtOutput.setText("");
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Input value invalid. Please try again.");
-                alert.show();
+            txtOutput.setText("");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Input value invalid. Please try again.");
+            alert.show();
         }
     }
 
@@ -116,18 +118,29 @@ public class Controller {
     }
     @FXML
     public void cmbBxInputTypeOnAction(ActionEvent actionEvent) {
-        if(cmbBxInputType.getSelectionModel().getSelectedItem().toString()!=outType) {
-            cmbBxOutputType.getItems().add(outType);
-            outType = cmbBxInputType.getSelectionModel().getSelectedItem().toString();
+        String type=cmbBxInputType.getSelectionModel().getSelectedItem().toString();
+        if(type!=outType) {
+            removeFrom(cmbBxOutputType,cmbBxInputType,type);
+
             txtInput.setPromptText(cmbBxInputType.getSelectionModel().getSelectedItem().toString());
             txtOutput.clear();
-            cmbBxOutputType.getItems().remove(outType);
         }
-
     }
     @FXML
     public void cmbBxOutputTypeOnAction(ActionEvent actionEvent) {
-        txtOutput.setPromptText(cmbBxOutputType.getSelectionModel().getSelectedItem().toString());
-        txtOutput.clear();
+
+        String type=cmbBxOutputType.getSelectionModel().getSelectedItem().toString();
+        if(type!=inType) {
+            removeFrom(cmbBxInputType,cmbBxOutputType,type);
+
+            txtOutput.setPromptText(cmbBxOutputType.getSelectionModel().getSelectedItem().toString());
+            txtOutput.clear();
+        }
+    }
+
+    private void removeFrom(JFXComboBox cmbBx1, JFXComboBox cmbBx2, String inOutType) {
+        cmbBx1.getItems().add(inOutType);
+        inOutType = cmbBx2.getSelectionModel().getSelectedItem().toString();
+        cmbBx1.getItems().remove(inOutType);
     }
 }
