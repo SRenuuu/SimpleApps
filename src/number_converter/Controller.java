@@ -126,6 +126,8 @@ public class Controller {
     private void convertHex2Bin() {
     }
 
+    //=================================
+
     private void convertOct2Hex() {
     }
 
@@ -133,6 +135,28 @@ public class Controller {
     }
 
     private void convertOct2Bin() {
+        int input=Integer.parseInt(txtInput.getText());
+        String result="";
+        while(input>0){
+            int temp=input%10;
+            while(temp>=0){
+                result+=temp%2;
+
+                if(temp==1){
+                    result+="00";
+                    break;
+                }
+                temp/=2;
+                if(temp==0){
+                    result+="0";
+                    break;
+                }
+
+            }
+            input/=10;
+        }
+        txtOutput.setText(new StringBuilder(result).reverse().toString());
+
     }
 
     //=================================
